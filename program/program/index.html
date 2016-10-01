@@ -13,8 +13,19 @@
 			$('#console').append('<p>' + message + '</p>');
 		};
 		</script>
+	<script>
+		$(document).ready(function () {
+			$('button').mouseenter(function () {
+				$(this).fadeTo('fast', .5);
+			});
+			$('button').mouseleave(function () {
+				$(this).fadeTo('fast', 1);
+			});
+		});
+	</script>
     <script src="js/main.js"></script>
-	<button onclick="player1.attack()">Button</button>
+	<button onclick="player1.attack()">Attack</button>
+	<button onclick="player1.spell()">Magic</button>
 	<div id = "console"></div>
 </body>
 </html>

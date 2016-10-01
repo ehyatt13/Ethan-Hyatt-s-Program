@@ -1,9 +1,5 @@
 ﻿// Your code here!
 function fighter() {
-    this.strength = 3;
-    this.magic = 3;
-    this.defense = 3;
-    this.magicdefense = 3;
     this.speed = 3;
     this.exp = 0;
     this.nextLevel = 10;
@@ -49,8 +45,29 @@ function fighter() {
         };
     };
 };
-var player1 = new fighter();
 
+function melee() {
+    this.strength = 6;
+    this.magic = 2;
+    this.defense = 3;
+    this.magicdefense = 1;
+}
+melee.prototype = new fighter()
+function mage() {
+    this.strength = 2;
+    this.magic = 6;
+    this.defense = 1;
+    this.magicdefense = 3;
+}
+mage.prototype = new fighter()
+
+function tank() {
+    this.strength = 2;
+    this.magic = 2;
+    this.defense = 4;
+    this.magicdefense = 4;
+}
+tank.prototype = new fighter()
 function enemy(hp, strength, magic, defense, magicdefense, speed, special, exp, level) {
     this.hp = hp;
     this.strength = strength;
@@ -83,30 +100,29 @@ function enemy(hp, strength, magic, defense, magicdefense, speed, special, exp, 
 
 var bug = new enemy(6, 3, 3, 1, 1.2, 1.5, 5, 5, 1)
 
-/*    var choice = prompt("What is most important to you and suits your playstyle: strength, magic, or defense?")
+var choice = prompt("What is most important to you and suits your playstyle: strength, magic, or defense?")
 
     switch (choice) {
         case "STRENGTH":
-            player1.strength += 4;
+            var player1 = new melee();
             break;
 
         case "MAGIC":
-            player1.magic += 4;
+            var player1 = new mage();
             break;
 
         case "DEFENSE":
-            player1.defense += 2;
-            player1.magicdefense += 2;
+            var player1 = new tank();
             break;
 
         default:
             console.log("I get you are nervious but take some time to calm yourself and spell it correctly.")
-    }*/
+    }
 
 
 var battle = true
 
-while (battle) {
+/*while (battle) {
     if (player1.speed > bug.speed) {
         command = prompt("Select a command (attack or magic).")
         switch (command) {
@@ -148,3 +164,4 @@ while (battle) {
         };
     };
 };
+*/
