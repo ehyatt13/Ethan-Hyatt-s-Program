@@ -116,7 +116,7 @@ var choice = prompt("What is most important to you and suits your playstyle: str
             break;
 
         default:
-            console.log("I get you are nervious but take some time to calm yourself and spell it correctly.")
+            console.log("The undecisive will fail against even the weakest of enemies.")
     }
 
 

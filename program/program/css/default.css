@@ -1,5 +1,9 @@
-﻿body {
-  /* Uncomment this to enable scrolling and zooming
+﻿
+	/* Uncomment this to enable scrolling and zooming
   touch-action: manipulation;
   */
+
+.command {
+	height: 50px;
+	width: 200px;
 }
