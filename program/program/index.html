@@ -7,12 +7,15 @@
 	<script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
 </head>
 <body>
-    <div>Content goes here!</div>
 	<script>
-		console.log = function (message) {
-			$('#console').append('<p>' + message + '</p>');
-		};
+		$(document).ready(function () {
+			console.log = function (message) {
+				$('#console').append('<p>' + message + '</p>');
+			};
+		});
 		</script>
+	<div id="healthbar"><div id="health">HP</div></div>
+	<div id="enemyhealthbar"><div id="enemyhealth">Enemy HP</div></div>
 	<script>
 		$(document).ready(function () {
 			$('button').mouseenter(function () {
@@ -20,12 +23,18 @@
 			});
 			$('button').mouseleave(function () {
 				$(this).fadeTo('fast', 1);
-			});
-		});
+			});		
+	});
 	</script>
-    <script src="js/main.js"></script>
-	<button class="command" onclick="player1.attack()">Attack</button>
-	<button class="command" onclick="player1.spell()">Magic</button>
-	<div id = "console"></div>
-</body>
+	<script>
+		/*$(document).ready(function () {
+			var health = document.getElementById("health")
+			health.value = bug.hp 
+		});*/
+	</script>
+		<script src="js/main.js"></script>
+		<button class="command" onclick="player1.attack()">Attack</button>
+		<button class="command" onclick="player1.spell()">Magic</button>
+		<div id="console"></div>
+	</body>
 </html>

@@ -2,8 +2,9 @@
 function fighter() {
     this.speed = 3;
     this.exp = 0;
-    this.nextLevel = 10;
+    this.nextLevel = 5;
     this.hp = 10;
+    this.maxHp = 10;
     this.special = 10;
     this.level = 1;
     this.levelup = function () {
@@ -16,31 +17,78 @@ function fighter() {
             this.defense += Math.ceil(Math.random() * 5);
             this.magicdefense += Math.ceil(Math.random() * 5);
             this.speed += Math.ceil(Math.random() * 5);
-            this.hp += Math.ceil(Math.random() * 5);
+            this.maxHp += Math.ceil(Math.random() * 5);
+            console.log("Congratulations you reached Level " + this.level + "!");
         };
         if (this.level % 5 === 0) {
             this.special += 5;
         };
     };
     this.attack = function () {
-        var damage = Math.floor(this.strength / bug.defense);
-        console.log("You did " + damage + " damage!");
-        bug.hp -= damage;
+        if (player1.speed >= bug.speed) {
+            var damage = Math.floor(this.strength / bug.defense);
+            console.log("You did " + damage + " damage!");
+            bug.hp -= damage;
+            updateenemyhealth(bug.hp / bug.maxHp * 200)
+            enemyCommand = Math.random()
+            if (enemyCommand <= .5) {
+                bug.attack();
+            }
+            else {
+                bug.spell();
+            };
+        }
+        else {
+            enemyCommand = Math.random()
+            if (enemyCommand <= .5) {
+                bug.attack();
+            }
+            else {
+                bug.spell();
+            };
+            var damage = Math.floor(this.strength / bug.defense);
+            console.log("You did " + damage + " damage!");
+            bug.hp -= damage;
+            updateenemyhealth(bug.hp / bug.maxHp * 200)
+        }
         if (bug.hp <= 0) {
             console.log("You won the battle! You gained " + bug.exp + " EXP!");
             this.exp += bug.exp;
-            levelup()
+            this.levelup()
             battle = false;
         };
     };
     this.spell = function () {
-        var damage = Math.floor(this.magic / bug.magicdefense);
-        console.log("You did " + damage + " damage!");
-        bug.hp -= damage;
+        if (player1.speed >= bug.speed) {
+            var damage = Math.floor(this.magic / bug.magicdefense);
+            console.log("You did " + damage + " damage!");
+            bug.hp -= damage;
+            updateenemyhealth(bug.hp / bug.maxHp * 200)
+            enemyCommand = Math.random()
+            if (enemyCommand <= .5) {
+                bug.attack();
+            }
+            else {
+                bug.spell();
+            };
+        }
+        else {
+            enemyCommand = Math.random()
+            if (enemyCommand <= .5) {
+                bug.attack();
+            }
+            else {
+                bug.spell();
+            };
+            var damage = Math.floor(this.magic / bug.magicdefense);
+            console.log("You did " + damage + " damage!");
+            bug.hp -= damage;
+            updateenemyhealth(bug.hp / bug.maxHp * 200)
+        }
         if (bug.hp <= 0) {
             console.log("You won the battle! You gained " + bug.exp + " EXP!");
             this.exp += bug.exp;
-            levelup()
+            this.levelup()
             battle = false;
         };
     };
@@ -60,7 +108,6 @@ function mage() {
     this.magicdefense = 3;
 }
 mage.prototype = new fighter()
-
 function tank() {
     this.strength = 2;
     this.magic = 2;
@@ -68,8 +115,9 @@ function tank() {
     this.magicdefense = 4;
 }
 tank.prototype = new fighter()
-function enemy(hp, strength, magic, defense, magicdefense, speed, special, exp, level) {
+function enemy(hp, maxHp, strength, magic, defense, magicdefense, speed, special, exp, level) {
     this.hp = hp;
+    this.maxHp = maxHp
     this.strength = strength;
     this.magic = magic;
     this.defense = defense;
@@ -82,6 +130,7 @@ function enemy(hp, strength, magic, defense, magicdefense, speed, special, exp, 
         var hit = Math.floor(this.strength / player1.defense);
         console.log("You took " + hit + " damage!");
         player1.hp -= hit;
+        updatehealth(player1.hp / player1.maxHp * 200)
         if (player1.hp <= 0) {
             console.log("You have been defeated!");
             battle = false
@@ -91,6 +140,7 @@ function enemy(hp, strength, magic, defense, magicdefense, speed, special, exp, 
         var hit = Math.floor(this.magic / player1.magicdefense);
         console.log("You took " + hit + " damage!");
         player1.hp -= hit;
+        updatehealth(player1.hp / player1.maxHp * 200)
         if (player1.hp <= 0) {
             console.log("You have been defeated!");
             battle = false;
@@ -98,7 +148,7 @@ function enemy(hp, strength, magic, defense, magicdefense, speed, special, exp, 
     }
 };
 
-var bug = new enemy(6, 3, 3, 1, 1.2, 1.5, 5, 5, 1)
+var bug = new enemy(10, 10, 3, 3, 3, 3, 5, 5, 5, 1)
 
 var choice = prompt("What is most important to you and suits your playstyle: strength, magic, or defense?")
 
@@ -165,3 +215,20 @@ var battle = true
     };
 };
 */
+
+function updatehealth(health) {
+    $('#health').animate({
+        width: health
+    }, 'slow')
+};
+function updateenemyhealth(enemyhealth) {
+    $('#enemyhealth').animate({
+        width: enemyhealth
+    }, 'slow')
+};
+/*if (player1.hp / player1.maxHp <= 0.5) {
+    document.getElementById(health).background - color === 'yellow';
+}
+else if (player1.hp / player1.maxHp <= 0.3) {
+    document.getElementById(health).background - color === 'red';
+}*/

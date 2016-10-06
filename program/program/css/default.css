@@ -7,3 +7,21 @@
 	height: 50px;
 	width: 200px;
 }
+#healthbar {
+	height: 25px;
+	width: 200px;
+}
+#enemyhealthbar {
+	height: 25px;
+	width: 200px;
+}
+#enemyhealth {
+	height: 25px;
+	width: 200px;
+	background-color: red;
+}
+#health {
+	height: 25px;
+	width: 200px;
+	background-color: greenyellow;
+}
