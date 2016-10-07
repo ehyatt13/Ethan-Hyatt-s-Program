@@ -92,6 +92,17 @@ function fighter() {
             battle = false;
         };
     };
+    this.inventory = function () {
+        this.inplayer = [potion(), potion()]
+    };
+    this.run = function () {
+        if (Math.random() > .33) {
+            console.log("You managed to escape!")
+        }
+        else {
+            console.log("You can't escape!")
+        }
+    }
 };
 
 function melee() {
@@ -152,22 +163,22 @@ var bug = new enemy(10, 10, 3, 3, 3, 3, 5, 5, 5, 1)
 
 var choice = prompt("What is most important to you and suits your playstyle: strength, magic, or defense?")
 
-    switch (choice) {
-        case "STRENGTH":
-            var player1 = new melee();
-            break;
+switch (choice) {
+    case "STRENGTH":
+        var player1 = new melee();
+        break;
 
-        case "MAGIC":
-            var player1 = new mage();
-            break;
+    case "MAGIC":
+        var player1 = new mage();
+        break;
 
-        case "DEFENSE":
-            var player1 = new tank();
-            break;
+    case "DEFENSE":
+        var player1 = new tank();
+        break;
 
-        default:
-            console.log("The undecisive will fail against even the weakest of enemies.")
-    }
+    default:
+        console.log("The undecisive will fail against even the weakest of enemies.")
+}
 
 
 var battle = true
@@ -179,7 +190,6 @@ var battle = true
             case "ATTACK":
                 player1.attack()
                 break;
-
             case "MAGIC":
                 player1.spell()
                 break;
@@ -200,14 +210,11 @@ var battle = true
         else {
             bug.spell();
         };
-
         command = prompt("Select a command (attack or magic).")
-
         switch (command) {
             case "ATTACK":
                 player1.attack();
                 break;
-
             case "MAGIC":
                 player1.spell();
                 break;
@@ -232,3 +239,7 @@ function updateenemyhealth(enemyhealth) {
 else if (player1.hp / player1.maxHp <= 0.3) {
     document.getElementById(health).background - color === 'red';
 }*/
+
+function potion() {
+    player.hp += 20;
+}
