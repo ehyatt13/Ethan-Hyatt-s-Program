@@ -24,85 +24,119 @@ function fighter() {
             this.special += 5;
         };
     };
+    this.isAlive = function () {
+        if (this.hp > 0) {
+            this.isAlive = true;
+        }
+        else {
+            this.isAlive = false;
+        };
+    };
     this.attack = function () {
-        if (player1.speed >= bug.speed) {
-            var damage = Math.floor(this.strength / bug.defense);
-            console.log("You did " + damage + " damage!");
-            bug.hp -= damage;
-            updateenemyhealth(bug.hp / bug.maxHp * 200)
-            enemyCommand = Math.random()
-            if (enemyCommand <= .5) {
-                bug.attack();
+        if (player1.isAlive = true) {
+            if (player1.speed >= bug.speed) {
+                var damage = Math.floor(this.strength / bug.defense);
+                console.log("You did " + damage + " damage!");
+                bug.hp -= damage;
+                updateenemyhealth(bug.hp / bug.maxHp * 200)
+                var enemyCommand = Math.random()
+                if (enemyCommand <= .5) {
+                    bug.attack();
+                }
+                else {
+                    bug.spell();
+                };
+                if (player.isAlive = false) {
+                    console.log("You have been defeated!");
+                };
             }
             else {
-                bug.spell();
+                var enemyCommand = Math.random()
+                if (enemyCommand <= .5) {
+                    bug.attack();
+                }
+                else {
+                    bug.spell();
+                };
+                if (player1.isAlive = false) {
+                    console.log("You have been defeated!");
+                }
+                else {
+                    var damage = Math.floor(this.strength / bug.defense);
+                    console.log("You did " + damage + " damage!");
+                    bug.hp -= damage;
+                    updateenemyhealth(bug.hp / bug.maxHp * 200)
+                }
+            }
+            if (bug.hp <= 0) {
+                console.log("You won the battle! You gained " + bug.exp + " EXP!");
+                this.exp += bug.exp;
+                this.levelup()
+                battle = false;
             };
         }
         else {
-            enemyCommand = Math.random()
-            if (enemyCommand <= .5) {
-                bug.attack();
-            }
-            else {
-                bug.spell();
-            };
-            var damage = Math.floor(this.strength / bug.defense);
-            console.log("You did " + damage + " damage!");
-            bug.hp -= damage;
-            updateenemyhealth(bug.hp / bug.maxHp * 200)
-        }
-        if (bug.hp <= 0) {
-            console.log("You won the battle! You gained " + bug.exp + " EXP!");
-            this.exp += bug.exp;
-            this.levelup()
-            battle = false;
+            console.log("You cannot attack beyond the grave...");
         };
     };
     this.spell = function () {
-        if (player1.speed >= bug.speed) {
-            var damage = Math.floor(this.magic / bug.magicdefense);
-            console.log("You did " + damage + " damage!");
-            bug.hp -= damage;
-            updateenemyhealth(bug.hp / bug.maxHp * 200)
-            enemyCommand = Math.random()
-            if (enemyCommand <= .5) {
-                bug.attack();
+        if (player1.isAlive = true) {
+            if (player1.speed >= bug.speed) {
+                var damage = Math.floor(this.magic / bug.magicdefense);
+                console.log("You did " + damage + " damage!");
+                bug.hp -= damage;
+                updateenemyhealth(bug.hp / bug.maxHp * 200)
+                var enemyCommand = Math.random()
+                if (enemyCommand <= .5) {
+                    bug.attack();
+                }
+                else {
+                    bug.spell();
+                };
+                if (player1.isAlive = false) {
+                    console.log("You have been defeated!");
+                };
             }
             else {
-                bug.spell();
+                var enemyCommand = Math.random()
+                if (enemyCommand <= .5) {
+                    bug.attack();
+                }
+                else {
+                    bug.spell();
+                };
+                if (player1.isAlive = false) {
+                    console.log("You have been defeated!");
+                }
+                else {
+                    var damage = Math.floor(this.magic / bug.magicdefense);
+                    console.log("You did " + damage + " damage!");
+                    bug.hp -= damage;
+                    updateenemyhealth(bug.hp / bug.maxHp * 200)
+                };
+            }
+            if (bug.hp <= 0) {
+                console.log("You won the battle! You gained " + bug.exp + " EXP!");
+                this.exp += bug.exp;
+                this.levelup()
+                battle = false;
             };
         }
         else {
-            enemyCommand = Math.random()
-            if (enemyCommand <= .5) {
-                bug.attack();
-            }
-            else {
-                bug.spell();
-            };
-            var damage = Math.floor(this.magic / bug.magicdefense);
-            console.log("You did " + damage + " damage!");
-            bug.hp -= damage;
-            updateenemyhealth(bug.hp / bug.maxHp * 200)
-        }
-        if (bug.hp <= 0) {
-            console.log("You won the battle! You gained " + bug.exp + " EXP!");
-            this.exp += bug.exp;
-            this.levelup()
-            battle = false;
+            console.log("You cannot attack beyond the grave...");
         };
     };
-    this.inventory = function () {
-        this.inplayer = [potion(), potion()]
-    };
+    this.inventory = function (){
+        inBattle: new Array(player1.potion(5))
+        keyItems: new Array() }
     this.run = function () {
-        if (Math.random() > .33) {
-            console.log("You managed to escape!")
-        }
-        else {
-            console.log("You can't escape!")
-        }
+    if (Math.random() > .33) {
+        console.log("You managed to escape!")
     }
+    else {
+        console.log("You can't escape!")
+    }
+};
 };
 
 function melee() {
@@ -142,20 +176,12 @@ function enemy(hp, maxHp, strength, magic, defense, magicdefense, speed, special
         console.log("You took " + hit + " damage!");
         player1.hp -= hit;
         updatehealth(player1.hp / player1.maxHp * 200)
-        if (player1.hp <= 0) {
-            console.log("You have been defeated!");
-            battle = false
-        };
     };
     this.spell = function () {
         var hit = Math.floor(this.magic / player1.magicdefense);
         console.log("You took " + hit + " damage!");
         player1.hp -= hit;
         updatehealth(player1.hp / player1.maxHp * 200)
-        if (player1.hp <= 0) {
-            console.log("You have been defeated!");
-            battle = false;
-        };
     }
 };
 
@@ -240,6 +266,16 @@ else if (player1.hp / player1.maxHp <= 0.3) {
     document.getElementById(health).background - color === 'red';
 }*/
 
-function potion() {
-    player.hp += 20;
-}
+/*fighter.inventory.inBattle[0] = function (amount) {
+    if (amount > 0) {
+        amount -= 1;
+        var using = true;
+        while (using = true) {
+            fighter.hp += 20;
+            using = false;
+        };
+    }
+    else {
+        console.log("You do not have any of this item!")
+    };
+};*/
