@@ -34,43 +34,43 @@ function fighter() {
     };
     this.attack = function () {
         if (player1.isAlive = true) {
-            if (player1.speed >= bug.speed) {
-                var damage = Math.floor(this.strength / bug.defense);
+            if (player1.speed >= currentenemy.speed) {
+                var damage = Math.floor(this.strength / currentenemy.defense);
                 console.log("You did " + damage + " damage!");
-                bug.hp -= damage;
-                updateenemyhealth(bug.hp / bug.maxHp * 200)
+                currentenemy.hp -= damage;
+                updateenemyhealth(currentenemy.hp / currentenemy.maxHp * 200)
                 var enemyCommand = Math.random()
                 if (enemyCommand <= .5) {
-                    bug.attack();
+                    currentenemy.attack();
                 }
                 else {
-                    bug.spell();
+                    currentenemy.spell();
                 };
-                if (player.isAlive = false) {
+                if (player1.isAlive = false) {
                     console.log("You have been defeated!");
                 };
             }
             else {
                 var enemyCommand = Math.random()
                 if (enemyCommand <= .5) {
-                    bug.attack();
+                    currentenemy.attack();
                 }
                 else {
-                    bug.spell();
+                    currentenemy.spell();
                 };
                 if (player1.isAlive = false) {
                     console.log("You have been defeated!");
                 }
                 else {
-                    var damage = Math.floor(this.strength / bug.defense);
+                    var damage = Math.floor(this.strength / currentenemy.defense);
                     console.log("You did " + damage + " damage!");
-                    bug.hp -= damage;
-                    updateenemyhealth(bug.hp / bug.maxHp * 200)
+                    currentenemy.hp -= damage;
+                    updateenemyhealth(currentenemy.hp / currentenemy.maxHp * 200)
                 }
             }
-            if (bug.hp <= 0) {
-                console.log("You won the battle! You gained " + bug.exp + " EXP!");
-                this.exp += bug.exp;
+            if (currentenemy.hp <= 0) {
+                console.log("You won the battle! You gained " + currentenemy.exp + " EXP!");
+                this.exp += currentenemy.exp;
                 this.levelup()
                 battle = false;
             };
@@ -81,17 +81,17 @@ function fighter() {
     };
     this.spell = function () {
         if (player1.isAlive = true) {
-            if (player1.speed >= bug.speed) {
-                var damage = Math.floor(this.magic / bug.magicdefense);
+            if (player1.speed >= currentenemy.speed) {
+                var damage = Math.floor(this.magic / currentenemy.magicdefense);
                 console.log("You did " + damage + " damage!");
-                bug.hp -= damage;
-                updateenemyhealth(bug.hp / bug.maxHp * 200)
+                currentenemy.hp -= damage;
+                updateenemyhealth(currentenemy.hp / currentenemy.maxHp * 200)
                 var enemyCommand = Math.random()
                 if (enemyCommand <= .5) {
-                    bug.attack();
+                    currentenemy.attack();
                 }
                 else {
-                    bug.spell();
+                    currentenemy.spell();
                 };
                 if (player1.isAlive = false) {
                     console.log("You have been defeated!");
@@ -100,24 +100,24 @@ function fighter() {
             else {
                 var enemyCommand = Math.random()
                 if (enemyCommand <= .5) {
-                    bug.attack();
+                    currentenemy.attack();
                 }
                 else {
-                    bug.spell();
+                    currentenemy.spell();
                 };
                 if (player1.isAlive = false) {
                     console.log("You have been defeated!");
                 }
                 else {
-                    var damage = Math.floor(this.magic / bug.magicdefense);
+                    var damage = Math.floor(this.magic / currentenemy.magicdefense);
                     console.log("You did " + damage + " damage!");
-                    bug.hp -= damage;
-                    updateenemyhealth(bug.hp / bug.maxHp * 200)
+                    currentenemy.hp -= damage;
+                    updateenemyhealth(currentenemy.hp / currentenemy.maxHp * 200)
                 };
             }
-            if (bug.hp <= 0) {
-                console.log("You won the battle! You gained " + bug.exp + " EXP!");
-                this.exp += bug.exp;
+            if (currentenemy.hp <= 0) {
+                console.log("You won the battle! You gained " + currentenemy.exp + " EXP!");
+                this.exp += currentenemy.exp;
                 this.levelup()
                 battle = false;
             };
@@ -185,7 +185,9 @@ function enemy(hp, maxHp, strength, magic, defense, magicdefense, speed, special
     }
 };
 
-var bug = new enemy(10, 10, 3, 3, 3, 3, 5, 5, 5, 1)
+var bug = new enemy(10, 10, 2, 4, 2, 2, 1, 5, 5, 1)
+
+//var rogue = new enemy(20, 20, 3, 2, 2, 1, 10, 5, 10, 3)
 
 var choice = prompt("What is most important to you and suits your playstyle: strength, magic, or defense?")
 
@@ -209,8 +211,15 @@ switch (choice) {
 
 var battle = true
 
+var currentenemy = bug
+
+/*if (bug.hp <= 0) {
+    var currentenemy = rogue;
+    updateenemyhealth(currentenemy.hp / currentenemy.maxHp * 200);
+};*/
+
 /*while (battle) {
-    if (player1.speed > bug.speed) {
+    if (player1.speed > currentenemy.speed) {
         command = prompt("Select a command (attack or magic).")
         switch (command) {
             case "ATTACK":
@@ -222,19 +231,19 @@ var battle = true
         };
         enemyCommand = Math.random()
         if (enemyCommand <= .5) {
-            bug.attack();
+            currentenemy.attack();
         }
         else {
-            bug.spell();
+            currentenemy.spell();
         };
     }
     else {
         enemyCommand = Math.random()
         if (enemyCommand <= .5) {
-            bug.attack();
+            currentenemy.attack();
         }
         else {
-            bug.spell();
+            currentenemy.spell();
         };
         command = prompt("Select a command (attack or magic).")
         switch (command) {
