@@ -132,9 +132,17 @@ function fighter() {
     this.run = function () {
     if (Math.random() > .33) {
         console.log("You managed to escape!")
+        battle = false;
     }
     else {
         console.log("You can't escape!")
+        var enemyCommand = Math.random()
+        if (enemyCommand <= .5) {
+            currentenemy.attack();
+        }
+        else {
+            currentenemy.spell();
+        };
     }
 };
 };
@@ -207,7 +215,6 @@ switch (choice) {
     default:
         console.log("The undecisive will fail against even the weakest of enemies.")
 }
-
 
 var battle = true
 
