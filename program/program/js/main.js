@@ -1,5 +1,4 @@
-﻿// Your code here!
-function fighter() {
+﻿function fighter() {
     this.speed = 3;
     this.exp = 0;
     this.nextLevel = 5;
@@ -130,7 +129,7 @@ function fighter() {
         inBattle: new Array(player1.potion(5))
         keyItems: new Array() }
     this.run = function () {
-    if (Math.random() > .33) {
+    if (Math.random() > .45) {
         console.log("You managed to escape!")
         battle = false;
     }
@@ -295,3 +294,28 @@ else if (player1.hp / player1.maxHp <= 0.3) {
         console.log("You do not have any of this item!")
     };
 };*/
+
+map1 = [
+    1, 1, 1, 1, 1, 0, 0, 0, 1, 1, 1, 1, 1,
+    1, 0, 0, 0, 0, 0, 'c', 0, 0, 0, 0, 0, 1,
+    1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1,
+    1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1,
+    1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1,
+    1, 0, 0, 0, 0, 0, 's', 0, 0, 0, 0, 0, 1,
+    1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+];
+
+map2 = [
+    1, 1, 1, 1, 1, 0, 0, 0, 1, 1, 1, 1, 1,
+    1, 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 1,
+    1, 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 1,
+    1, 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 1,
+    1, 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 1,
+    1, 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 1,
+    1, 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 1,
+    1, 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 1,
+    1, 1, 1, 1, 1, 0, 0, 0, 1, 1, 1, 1, 1,
+];
+
+map = new Object ()
+map.position = map1['s']
