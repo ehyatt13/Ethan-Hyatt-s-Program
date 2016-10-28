@@ -25,3 +25,41 @@
 	width: 200px;
 	background-color: greenyellow;
 }
+
+.map {
+   width: 1330px;
+   height: 490px;
+   background-color: gray;
+   position: relative; 
+     
+}
+.player {
+   background-color: blue;
+   width: 70px;
+   height: 70px;
+   position: absolute;
+}
+.wall {
+   background: url(https://s-media-cache-ak0.pinimg.com/736x/ca/18/50/ca1850db3b924f430b571d158b91cc2e.jpg);
+   background-size: 70px 70px;
+   background-repeat: no-repeat;
+   width: 70px;
+   height: 70px;
+   float: left;
+}
+.floor{
+   background: url(https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcSpDD2xJ4IJ2Qtb-Vh3HM7TXzPq6JvGRDklyCKgueNYOA-xMfd2eA);
+   background-size: 70px 70px;
+   background-repeat: no-repeat;
+   width: 70px;
+   height: 70px;
+   float: left;
+}
+.chest{
+   background: url(https://images-na.ssl-images-amazon.com/images/I/61nAFFJOhaL.png);
+   background-size: 70px 70px;
+   background-repeat: no-repeat;
+   width: 70px;
+   height: 70px;
+   float: left;
+}
