@@ -63,3 +63,11 @@
    height: 70px;
    float: left;
 }
+.empty {
+	background: url(http://www.clker.com/cliparts/t/m/S/Q/Z/t/treasure-chest-hi.png);
+	background-size: 70px 70px;
+	background-repeat: no-repeat;
+	width: 70px;
+	height: 70px;
+	float: left;
+}
