@@ -274,12 +274,12 @@ function updateenemyhealth(enemyhealth) {
         width: enemyhealth
     }, 'slow')
 };
-/*if (player1.hp / player1.maxHp <= 0.5) {
-    document.getElementById(health).background - color === 'yellow';
+if (player1.hp / player1.maxHp <= 0.5) {
+    document.getElementById(health).background-color === 'yellow';
 }
 else if (player1.hp / player1.maxHp <= 0.3) {
-    document.getElementById(health).background - color === 'red';
-}*/
+    document.getElementById(health).background-color === 'red';
+};
 
 /*fighter.inventory.inBattle[0] = function (amount) {
     if (amount > 0) {
@@ -295,18 +295,3 @@ else if (player1.hp / player1.maxHp <= 0.3) {
     };
 };*/
 
-/*testmap2 = [
-    [1, 1, 1, 1, 1, 0, 0, 0, 1, 1, 1, 1, 1,],
-    [1, 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 1,],
-    [1, 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 1,],
-    [1, 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 1,],
-    [1, 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 1,],
-    [1, 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 1,],
-    [1, 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 1,],
-    [1, 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 1,],
-    [1, 1, 1, 1, 1, 0, 0, 0, 1, 1, 1, 1, 1,]
-];*/
-
-
-//map = new Object ()
-//map.position = map1['s']
