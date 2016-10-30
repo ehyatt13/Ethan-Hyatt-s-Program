@@ -19,17 +19,16 @@
 		</script>
 	<div class="map"></div>
 	<script>
-		map = [
-			'wwwwwwww   wwwwwwww',
-			'w                 w',
-			'w                 w',
-			'w        c        w',
-			'w                 w',
-			'w                 w',
-			'wwwwwwwwwwwwwwwwwww'
-		];
 
-		currentmap = map;
+        map = [
+			'wwwwwwww   wwwwwwww',
+            'w                 w',
+            'w                 w',
+            'w        c        w',
+            'w                 w',
+            'w                 w',
+            'wwwwwwwwwwwwwwwwwww'
+		];
 
 		map2 = [
 			'wwwwwwww   wwwwwwww',
@@ -45,12 +44,52 @@
 			'wwwwwwwwwwwwwwwwwww',
 			'w                 w',
 			'w                 w',
-			'w                 w',
-			'w                 w',
+			'                   ',
+			'                   ',
 			'w                 w',
 			'wwwwwwww   wwwwwwww'
 		];
 
+        map4 = [
+            'wwwwwwww   wwwwwwww',
+            'wwwwwwww   wwwwwwww',
+            'wwwwwwww   wwwwwwww',
+            'wwwwwwww           ',
+            'wwwwwwww           ',
+            'wwwwwwwwwwwwwwwwwww',
+            'wwwwwwwwwwwwwwwwwww'
+        ];
+
+        map5 = [
+            'wwwwwwww   wwwwwwww',
+            'wwwwwwww   wwwwwwww',
+            'wwwwwwww   wwwwwwww',
+            '           wwwwwwww',
+            '           wwwwwwww',
+            'wwwwwwwwwwwwwwwwwww',
+            'wwwwwwwwwwwwwwwwwww'
+        ];
+
+        blank = [
+            'wwwwwwwwwwwwwwwwwww',
+            'wwwwwwwwwwwwwwwwwww',
+            'wwwwwwwwwwwwwwwwwww',
+            'wwwwwwwwwwwwwwwwwww',
+            'wwwwwwwwwwwwwwwwwww',
+            'wwwwwwwwwwwwwwwwwww',
+            'wwwwwwwwwwwwwwwwwww'
+        ];
+
+        grandmap = [
+            [map4, map3, map5],
+            [blank, map2, blank],
+            [blank, map, blank]
+        ];
+
+        var my = 2;
+        var mx = 1;
+
+        currentmap = grandmap[my][mx];
 
 		var player_x = 9;
 		var player_y = 5;
@@ -74,8 +113,8 @@
 
 		$(document).ready(function () {
 			$('.map').append('<div class="player"></div>');
-			for (y = 0; y < currentmap.length; y++) {
-				for (x = 0; x < currentmap[y].length; x++) {
+            for (y = 0; y < currentmap.length; y++) {
+                for (x = 0; x < currentmap[y].length; x++) {
 					if (currentmap[y][x] == 'w') {
 						$('.map').append('<div class="wall"></div>');
 					} else if (currentmap[y][x] == ' ') {
@@ -94,57 +133,57 @@
 				event.preventDefault();
 				//console.log(event);
 				//down
-				if (event.keyCode == 40) {
+				if (event.keyCode == 40 && currentmap[player_y + 1][player_x] !== 'w') {
 					player_y = player_y + 1;
-					mapupdate()
+					mapupdate();
+                    if (player_y == 6) {
+                        my = my + 1;
+                        currentmap = grandmap[my][mx];
+                        mapupdate();
+                        player_y = 0;
+                    }
 				}
 				//up
-				if (event.keyCode == 38) {
+				if (event.keyCode == 38 && currentmap[player_y - 1][player_x] !== 'w') {
 					player_y = player_y - 1;
-					mapupdate()
+					mapupdate();
+                    if (player_y == 0) {
+                        my = my - 1;
+                        currentmap = grandmap[my][mx];
+                        mapupdate();
+                        player_y = 6;
+                    }
 				}
 				//left
-				if (event.keyCode == 37) {
+				if (event.keyCode == 37 && currentmap[player_y][player_x - 1] !== 'w') {
 					player_x = player_x - 1;
-					mapupdate()
+					mapupdate();
+                    if (player_x == 0) {
+                        mx = mx - 1;
+                        currentmap = grandmap[my][mx];
+                        mapupdate();
+                        player_x = 18;
+                    }
 				}
 				//right
-				if (event.keyCode == 39) {
+				if (event.keyCode == 39 && currentmap[player_y][player_x + 1] !== 'w') {
 					player_x = player_x + 1;
-					mapupdate()
+					mapupdate();
+                    if (player_x == 18) {
+                        mx = mx + 1;
+                        currentmap = grandmap[my][mx];
+                        mapupdate();
+                        player_x = 0;
+                    }
 				}
 				//chest
-				if (currentmap[player_y][player_x] == 'c') {
-					currentmap[player_y][player_x] == 'o';
-					console.log(currentmap[player_y][player_x])
+				/*if (currentmap[player_y][player_x] == 'c') {
+					currentmap[player_y][player_x] = 'o';
+					console.log(currentmap[player_y][player_x]);
 					gain = Math.ceil(Math.random() * 3);
 					console.log("You gained " + gain + " potions!");
 					mapupdate()
-				}
-				if (currentmap == map && player_y == 0) {
-					currentmap = map2;
-					mapupdate()
-					player_y == 6;
-					player_x == player_x;
-				}
-				if (currentmap == map2 && player_y == 6) {
-					currentmap = map;
-					mapupdate()
-					player_y == 0;
-					player_x == player_x;
-				}
-				if (currentmap == map2 && player_y == 0) {
-					currentmap = map3;
-					player_y == 6;
-					mapupdate()
-					player_x == player_x;
-				}
-				if (currentmap == map3 && player_y == 6) {
-					currentmap = map2;
-					mapupdate()
-					player_y == 0;
-					player_x == player_x;
-				}
+				}*/
 				$('.player').animate({ top: player_y * 70, left: player_x * 70, position: 'absolute' }, { duration: 100 });
 			});
 		});</script>
