@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Intro to Ethan's Program</title>
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"
+            integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <link href="css/default.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+            integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+            crossorigin="anonymous"></script>
+</head>
+<body>
+<form action="index.html" method="get">
+    <div class="radio">
+        <label><input type="radio" name="Choice" value="STRENGTH">Strength</label>
+        <p>Do you prefer to rely on physical strength to defeat your opponents? If so, this is the option for you.</p>
+        <p>STAT ALTERATIONS: ++STRENGTH --MAGIC +DEFENSE -MAGIC DEFENSE</p>
+    </div>
+    <div class="radio">
+        <label><input type="radio" name="Choice" value="MAGIC">Magic</label>
+        <p>Do you like to attack from a distance, out of direct danger? If this is true you should heavily consider this
+            option.</p>
+        <p>STAT ALTERATIONS: --STRENGTH ++MAGIC -DEFENSE +MAGIC DEFENSE</p>
+    </div>
+    <div class="radio">
+        <label><input type="radio" name="Choice" value="DEFENSE">Defense</label>
+        <p>Do you prioritize defense and the fortitude to resist attacks over all else? This is is the choice for
+            you.</p>
+        <p>STAT ALTERATIONS: -STRENGTH -MAGIC +DEFENSE +MAGIC DEFENSE</p>
+    </div>
+
+    <p align="center">NOTE: If you do not pick one of the above choices the game will not function as intended, and you
+        will not be able to progress.</p>
+    <div class="buttons">
+        <button class="command" type="submit">Start Game</button>
+    </div>
+</form>
+</body>
+</html>

@@ -1,210 +1,253 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8" />
+    <meta charset="utf-8"/>
     <title>Program</title>
-	<script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-	<link href="css/default.css" rel="stylesheet" />
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"
+            integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <link href="css/default.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+            integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+            crossorigin="anonymous"></script>
 </head>
 <body>
-	<script>
-		$(document).ready(function () {
-			console.log = function (message) {
-				$('#console').append('<p>' + message + '</p>');
-			};
-		});
-		</script>
-	<div class="map"></div>
-	<script>
+<script>
+    $(document).ready(function () {
+        console.log = function (message) {
+            $('#console').append('<p>' + message + '</p>');
+        };
+    });
+</script>
+<div class="map"></div>
+<script>
 
-        map = [
-			'wwwwwwww   wwwwwwww',
-            'w                 w',
-            'w                 w',
-            'w        c        w',
-            'w                 w',
-            'w                 w',
-            'wwwwwwwwwwwwwwwwwww'
-		];
+    map = [
+        'wwwwwwww   wwwwwwww',
+        'w                 w',
+        'w                 w',
+        'w        c        w',
+        'w                 w',
+        'w                 w',
+        'wwwwwwwwwwwwwwwwwww'
+    ];
 
-		map2 = [
-			'wwwwwwww   wwwwwwww',
-			'wwwwwwww   wwwwwwww',
-			'wwwwwwww   wwwwwwww',
-			'wwwwwwww   wwwwwwww',
-			'wwwwwwww   wwwwwwww',
-			'wwwwwwww   wwwwwwww',
-			'wwwwwwww   wwwwwwww'
-		];
+    map2 = [
+        'wwwwwwww   wwwwwwww',
+        'wwwwwwww   wwwwwwww',
+        'wwwwwwww   wwwwwwww',
+        'wwwwwwww   wwwwwwww',
+        'wwwwwwww   wwwwwwww',
+        'wwwwwwww   wwwwwwww',
+        'wwwwwwww   wwwwwwww'
+    ];
 
-		map3 = [
-			'wwwwwwwwwwwwwwwwwww',
-			'w                 w',
-			'w                 w',
-			'                   ',
-			'                   ',
-			'w                 w',
-			'wwwwwwww   wwwwwwww'
-		];
+    map3 = [
+        'wwwwwwwwwwwwwwwwwww',
+        'w                 w',
+        '                   ',
+        '                   ',
+        '                   ',
+        'w                 w',
+        'wwwwwwww   wwwwwwww'
+    ];
 
-        map4 = [
-            'wwwwwwww   wwwwwwww',
-            'wwwwwwww   wwwwwwww',
-            'wwwwwwww   wwwwwwww',
-            'wwwwwwww           ',
-            'wwwwwwww           ',
-            'wwwwwwwwwwwwwwwwwww',
-            'wwwwwwwwwwwwwwwwwww'
-        ];
+    map4 = [
+        'wwwwwwww   wwwwwwww',
+        'wwwwwwww   wwwwwwww',
+        'wwwwwwww           ',
+        'wwwwwwww           ',
+        'wwwwwwww           ',
+        'wwwwwwwwwwwwwwwwwww',
+        'wwwwwwwwwwwwwwwwwww'
+    ];
 
-        map5 = [
-            'wwwwwwww   wwwwwwww',
-            'wwwwwwww   wwwwwwww',
-            'wwwwwwww   wwwwwwww',
-            '           wwwwwwww',
-            '           wwwwwwww',
-            'wwwwwwwwwwwwwwwwwww',
-            'wwwwwwwwwwwwwwwwwww'
-        ];
+    map5 = [
+        'wwwwwwww   wwwwwwww',
+        'wwwwwwww   wwwwwwww',
+        '           wwwwwwww',
+        '           wwwwwwww',
+        '           wwwwwwww',
+        'wwwwwwwwwwwwwwwwwww',
+        'wwwwwwwwwwwwwwwwwww'
+    ];
 
-        blank = [
-            'wwwwwwwwwwwwwwwwwww',
-            'wwwwwwwwwwwwwwwwwww',
-            'wwwwwwwwwwwwwwwwwww',
-            'wwwwwwwwwwwwwwwwwww',
-            'wwwwwwwwwwwwwwwwwww',
-            'wwwwwwwwwwwwwwwwwww',
-            'wwwwwwwwwwwwwwwwwww'
-        ];
+    map6 = [
+        'wwwwwwwwwwwwwwwwwww',
+        'wwwwwwwwwwwwwwwwwww',
+        'wwwwwwww           ',
+        'wwwwwwww           ',
+        'wwwwwwww           ',
+        'wwwwwwww   wwwwwwww',
+        'wwwwwwww   wwwwwwww'
+    ];
 
-        grandmap = [
-            [map4, map3, map5],
-            [blank, map2, blank],
-            [blank, map, blank]
-        ];
+    map7 = [
+        'wwwwwwwwwwwwwwwwwww',
+        'wwwwwwwwwwwwwwwwwww',
+        '           wwwwwwww',
+        '           wwwwwwww',
+        '           wwwwwwww',
+        'wwwwwwww   wwwwwwww',
+        'wwwwwwww   wwwwwwww'
+    ];
 
-        var my = 2;
-        var mx = 1;
+    map8 = [
+        'wwwwwwww   wwwwwwww',
+        'w                 w',
+        '                   ',
+        '                   ',
+        '                   ',
+        'w                 w',
+        'wwwwwwwwwwwwwwwwwww'
+    ];
 
-        currentmap = grandmap[my][mx];
+    blank = [
+        'wwwwwwwwwwwwwwwwwww',
+        'wwwwwwwwwwwwwwwwwww',
+        'wwwwwwwwwwwwwwwwwww',
+        'wwwwwwwwwwwwwwwwwww',
+        'wwwwwwwwwwwwwwwwwww',
+        'wwwwwwwwwwwwwwwwwww',
+        'wwwwwwwwwwwwwwwwwww'
+    ];
 
-		var player_x = 9;
-		var player_y = 5;
+    grandmap = [
+        [map6, map8, map7],
+        [map4, map3, map5],
+        [blank, map2, blank],
+        [blank, map, blank]
+    ];
 
-		mapupdate = function () {
-			$('.map').find('*:not(".player")').remove();
-			for (y = 0; y < currentmap.length; y++) {
-				for (x = 0; x < currentmap[y].length; x++) {
-					if (currentmap[y][x] == 'w') {
-						$('.map').append('<div class="wall"></div>');
-					} else if (currentmap[y][x] == ' ') {
-						$('.map').append('<div class="floor"></div>');
-					} else if (currentmap[y][x] == 'c') {
-						$('.map').append('<div class="chest"></div>');
-					} else if (currentmap[y][x] == 'o') {
-						$('.map').append('<div class="empty"></div>');
-					}
-				}
-			}
-		};
+    var my = 3;
+    var mx = 1;
 
-		$(document).ready(function () {
-			$('.map').append('<div class="player"></div>');
-            for (y = 0; y < currentmap.length; y++) {
-                for (x = 0; x < currentmap[y].length; x++) {
-					if (currentmap[y][x] == 'w') {
-						$('.map').append('<div class="wall"></div>');
-					} else if (currentmap[y][x] == ' ') {
-						$('.map').append('<div class="floor"></div>');
-					} else if (currentmap[y][x] == 'c') {
-						$('.map').append('<div class="chest"></div>');
-					} else if (currentmap[y][x] == 'o') {
-						$('.map').append('<div class="empty"></div>');
-					}
+    currentmap = grandmap[my][mx];
 
-				}
-			}
-			$('.player').css({ top: player_y * 70, left: player_x * 70, position: 'absolute' });
+    var player_x = 9;
+    var player_y = 5;
 
-			$(document).keydown(function (event) {
-				event.preventDefault();
-				//console.log(event);
-				//down
-				if (event.keyCode == 40 && currentmap[player_y + 1][player_x] !== 'w') {
-					player_y = player_y + 1;
-					mapupdate();
-                    if (player_y == 6) {
-                        my = my + 1;
-                        currentmap = grandmap[my][mx];
-                        mapupdate();
-                        player_y = 0;
-                    }
-				}
-				//up
-				if (event.keyCode == 38 && currentmap[player_y - 1][player_x] !== 'w') {
-					player_y = player_y - 1;
-					mapupdate();
-                    if (player_y == 0) {
-                        my = my - 1;
-                        currentmap = grandmap[my][mx];
-                        mapupdate();
-                        player_y = 6;
-                    }
-				}
-				//left
-				if (event.keyCode == 37 && currentmap[player_y][player_x - 1] !== 'w') {
-					player_x = player_x - 1;
-					mapupdate();
-                    if (player_x == 0) {
-                        mx = mx - 1;
-                        currentmap = grandmap[my][mx];
-                        mapupdate();
-                        player_x = 18;
-                    }
-				}
-				//right
-				if (event.keyCode == 39 && currentmap[player_y][player_x + 1] !== 'w') {
-					player_x = player_x + 1;
-					mapupdate();
-                    if (player_x == 18) {
-                        mx = mx + 1;
-                        currentmap = grandmap[my][mx];
-                        mapupdate();
-                        player_x = 0;
-                    }
-				}
-				//chest
-				/*if (currentmap[player_y][player_x] == 'c') {
-					currentmap[player_y][player_x] = 'o';
-					console.log(currentmap[player_y][player_x]);
-					gain = Math.ceil(Math.random() * 3);
-					console.log("You gained " + gain + " potions!");
-					mapupdate()
-				}*/
-				$('.player').animate({ top: player_y * 70, left: player_x * 70, position: 'absolute' }, { duration: 100 });
-			});
-		});</script>
-	<div id="healthbar"><div id="health">HP</div></div>
-	<div id="enemyhealthbar"><div id="enemyhealth">Enemy HP</div></div>
-	<script>
-		$(document).ready(function () {
-			$('button').mouseenter(function () {
-				$(this).fadeTo('fast', .5);
-			});
-			$('button').mouseleave(function () {
-				$(this).fadeTo('fast', 1);
-			});		
-	});
-	</script>
-		<script src="js/main.js"></script>
-		<button class="command" onclick="player1.attack()">Attack</button>
-		<button class="command" onclick="player1.spell()">Magic</button>
-		<button class="command" onclick="player1.potion(5)">Inventory</button>
-		<button class="command" onclick="player1.run()">Escape</button>
-		<div id="console"></div>
-		<div class="alert alert-success" role="alert"></div>
-	</body>
+    mapupdate = function () {
+        $('.map').find('*:not(".player")').remove();
+        for (y = 0; y < currentmap.length; y++) {
+            for (x = 0; x < currentmap[y].length; x++) {
+                if (currentmap[y][x] == 'w') {
+                    $('.map').append('<div class="wall"></div>');
+                } else if (currentmap[y][x] == ' ') {
+                    $('.map').append('<div class="floor"></div>');
+                } else if (currentmap[y][x] == 'c') {
+                    $('.map').append('<div class="chest"></div>');
+                } else if (currentmap[y][x] == 'o') {
+                    $('.map').append('<div class="empty"></div>');
+                }
+            }
+        }
+    };
+
+    $(document).ready(function () {
+        $('.map').append('<div class="player"></div>');
+        for (y = 0; y < currentmap.length; y++) {
+            for (x = 0; x < currentmap[y].length; x++) {
+                if (currentmap[y][x] == 'w') {
+                    $('.map').append('<div class="wall"></div>');
+                } else if (currentmap[y][x] == ' ') {
+                    $('.map').append('<div class="floor"></div>');
+                } else if (currentmap[y][x] == 'c') {
+                    $('.map').append('<div class="chest"></div>');
+                } else if (currentmap[y][x] == 'o') {
+                    $('.map').append('<div class="empty"></div>');
+                }
+
+            }
+        }
+        $('.player').css({top: player_y * 70, left: player_x * 70, position: 'absolute'});
+
+        $(document).keydown(function (event) {
+            event.preventDefault();
+            //console.log(event);
+            //down
+            if (event.keyCode == 40 && currentmap[player_y + 1][player_x] !== 'w') {
+                player_y = player_y + 1;
+                mapupdate();
+                if (player_y == 6) {
+                    my = my + 1;
+                    currentmap = grandmap[my][mx];
+                    mapupdate();
+                    player_y = 0;
+                }
+            }
+            //up
+            if (event.keyCode == 38 && currentmap[player_y - 1][player_x] !== 'w') {
+                player_y = player_y - 1;
+                mapupdate();
+                if (player_y == 0) {
+                    my = my - 1;
+                    currentmap = grandmap[my][mx];
+                    mapupdate();
+                    player_y = 6;
+                }
+            }
+            //left
+            if (event.keyCode == 37 && currentmap[player_y][player_x - 1] !== 'w') {
+                player_x = player_x - 1;
+                mapupdate();
+                if (player_x == 0) {
+                    mx = mx - 1;
+                    currentmap = grandmap[my][mx];
+                    mapupdate();
+                    player_x = 18;
+                }
+            }
+            //right
+            if (event.keyCode == 39 && currentmap[player_y][player_x + 1] !== 'w') {
+                player_x = player_x + 1;
+                mapupdate();
+                if (player_x == 18) {
+                    mx = mx + 1;
+                    currentmap = grandmap[my][mx];
+                    mapupdate();
+                    player_x = 0;
+                }
+            }
+            //chest
+            /*if (currentmap[player_y][player_x] == 'c') {
+             currentmap[player_y][player_x] = 'o';
+             console.log(currentmap[player_y][player_x]);
+             gain = Math.ceil(Math.random() * 3);
+             console.log("You gained " + gain + " potions!");
+             mapupdate()
+             }*/
+            $('.player').animate({top: player_y * 70, left: player_x * 70, position: 'absolute'}, {duration: 100});
+        });
+    });</script>
+<div id="battle">
+    <div id="healthbar">
+        <div id="health">HP</div>
+    </div>
+    <div id="enemyhealthbar">
+        <div id="enemyhealth">Enemy HP</div>
+    </div>
+    <script>
+        $(document).ready(function () {
+            $('button').mouseenter(function () {
+                $(this).fadeTo('fast', .5);
+            });
+            $('button').mouseleave(function () {
+                $(this).fadeTo('fast', 1);
+            });
+        });
+    </script>
+    <script src="js/main.js"></script>
+    <div class="buttons">
+        <button class="command" onclick="player1.attack()">Attack</button>
+        <button class="command" onclick="player1.spell()">Magic</button>
+        <button class="command" onclick="player1.potion(5)">Inventory</button>
+        <button class="command" onclick="player1.run()">Escape</button>
+        <div id="console"></div>
+        <div class="alert alert-success" role="alert"></div>
+    </div>
+</div>
+</body>
 </html>
