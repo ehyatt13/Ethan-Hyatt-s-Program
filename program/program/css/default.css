@@ -33,8 +33,8 @@ touch-action: manipulation;
 }
 
 .map {
-    width: 1330px;
-    height: 490px;
+    width: 1520px;
+    height: 560px;
     background-color: gray;
     position: relative;
 
@@ -42,44 +42,44 @@ touch-action: manipulation;
 
 .player {
     background-color: blue;
-    width: 70px;
-    height: 70px;
+    width: 80px;
+    height: 80px;
     position: absolute;
 }
 
 .wall {
     background: url(https://s-media-cache-ak0.pinimg.com/736x/ca/18/50/ca1850db3b924f430b571d158b91cc2e.jpg);
-    background-size: 70px 70px;
+    background-size: 80px 80px;
     background-repeat: no-repeat;
-    width: 70px;
-    height: 70px;
+    width: 80px;
+    height: 80px;
     float: left;
 }
 
 .floor {
     background: url(https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcSpDD2xJ4IJ2Qtb-Vh3HM7TXzPq6JvGRDklyCKgueNYOA-xMfd2eA);
-    background-size: 70px 70px;
+    background-size: 80px 80px;
     background-repeat: no-repeat;
-    width: 70px;
-    height: 70px;
+    width: 80px;
+    height: 80px;
     float: left;
 }
 
 .chest {
     background: url(https://images-na.ssl-images-amazon.com/images/I/61nAFFJOhaL.png);
-    background-size: 70px 70px;
+    background-size: 80px 80px;
     background-repeat: no-repeat;
-    width: 70px;
-    height: 70px;
+    width: 80px;
+    height: 80px;
     float: left;
 }
 
 .empty {
     background: url(http://www.clker.com/cliparts/t/m/S/Q/Z/t/treasure-chest-hi.png);
-    background-size: 70px 70px;
+    background-size: 80px 80px;
     background-repeat: no-repeat;
-    width: 70px;
-    height: 70px;
+    width: 80px;
+    height: 80px;
     float: left;
 }
 

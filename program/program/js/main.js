@@ -1,4 +1,6 @@
-﻿function fighter() {
+﻿phase = 'explore';
+
+function fighter() {
     this.speed = 3;
     this.exp = 0;
     this.nextLevel = 5;
@@ -77,7 +79,8 @@
                 console.log("You won the battle! You gained " + currentenemy.exp + " EXP!");
                 this.exp += currentenemy.exp;
                 this.levelup()
-                battle = false;
+                phase = 'explore';
+                updatescreen();
             }
             ;
         }
@@ -130,7 +133,8 @@
                 console.log("You won the battle! You gained " + currentenemy.exp + " EXP!");
                 this.exp += currentenemy.exp;
                 this.levelup()
-                battle = false;
+                phase = 'explore';
+                updatescreen();
             }
             ;
         }
@@ -146,7 +150,8 @@
     this.run = function () {
         if (Math.random() > .45) {
             console.log("You managed to escape!")
-            battle = false;
+            phase = 'explore';
+            updatescreen();
         }
         else {
             console.log("You can't escape!")
@@ -160,6 +165,21 @@
             ;
         }
     };
+};
+
+updatescreen = function() {
+    if (phase === 'explore') {
+        $('#battle').hide();
+        $('.map').show();
+        $('#console').empty();
+    }
+    ;
+
+    if (phase === 'fighting') {
+        $('.map').hide();
+        $('#battle').show();
+    }
+    ;
 };
 
 function melee() {
@@ -208,7 +228,7 @@ function enemy(hp, maxHp, strength, magic, defense, magicdefense, speed, special
     }
 };
 
-var bug = new enemy(10, 10, 2, 4, 2, 2, 1, 5, 5, 1);
+var bug = new enemy(10, 10, 2, 3, 2, 2, 1, 5, 5, 1);
 
 //var rogue = new enemy(20, 20, 3, 2, 2, 1, 10, 5, 10, 3);
 
@@ -245,8 +265,6 @@ switch (choice) {
     default:
         console.log("The undecisive will fail against even the weakest of enemies.")
 }
-
-var battle = true
 
 var currentenemy = bug
 

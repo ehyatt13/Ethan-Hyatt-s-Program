@@ -15,6 +15,9 @@
 </head>
 <body>
 <script>
+    phase = 'explore';
+</script>
+<script>
     $(document).ready(function () {
         console.log = function (message) {
             $('#console').append('<p>' + message + '</p>');
@@ -146,6 +149,23 @@
         }
     };
 
+    phase = 'explore';
+
+    updatescreen = function() {
+        if (phase === 'explore') {
+            $('#battle').hide();
+            $('.map').show();
+            $('#console').empty();
+        }
+        ;
+
+        if (phase === 'fighting') {
+            $('.map').hide();
+            $('#battle').show();
+        }
+        ;
+    };
+
     $(document).ready(function () {
         $('.map').append('<div class="player"></div>');
         for (y = 0; y < currentmap.length; y++) {
@@ -162,7 +182,7 @@
 
             }
         }
-        $('.player').css({top: player_y * 70, left: player_x * 70, position: 'absolute'});
+        $('.player').css({top: player_y * 80, left: player_x * 80, position: 'absolute'});
 
         $(document).keydown(function (event) {
             event.preventDefault();
@@ -177,6 +197,10 @@
                     mapupdate();
                     player_y = 0;
                 }
+                if (Math.random() < .10) {
+                    phase = 'fighting';
+                    updatescreen();
+                }
             }
             //up
             if (event.keyCode == 38 && currentmap[player_y - 1][player_x] !== 'w') {
@@ -187,6 +211,10 @@
                     currentmap = grandmap[my][mx];
                     mapupdate();
                     player_y = 6;
+                }
+                if (Math.random() < .10) {
+                    phase = 'fighting';
+                    updatescreen();
                 }
             }
             //left
@@ -199,6 +227,10 @@
                     mapupdate();
                     player_x = 18;
                 }
+                if (Math.random() < .10) {
+                    phase = 'fighting';
+                    updatescreen();
+                }
             }
             //right
             if (event.keyCode == 39 && currentmap[player_y][player_x + 1] !== 'w') {
@@ -210,6 +242,10 @@
                     mapupdate();
                     player_x = 0;
                 }
+                if (Math.random() < .10) {
+                    phase = 'fighting';
+                    updatescreen();
+                }
             }
             //chest
             /*if (currentmap[player_y][player_x] == 'c') {
@@ -219,7 +255,7 @@
              console.log("You gained " + gain + " potions!");
              mapupdate()
              }*/
-            $('.player').animate({top: player_y * 70, left: player_x * 70, position: 'absolute'}, {duration: 100});
+            $('.player').animate({top: player_y * 80, left: player_x * 80, position: 'absolute'}, {duration: 100});
         });
     });</script>
 <div id="battle">
@@ -249,5 +285,10 @@
         <div class="alert alert-success" role="alert"></div>
     </div>
 </div>
+<script>
+    $(document).ready(function () {
+        updatescreen();
+    });
+</script>
 </body>
 </html>
