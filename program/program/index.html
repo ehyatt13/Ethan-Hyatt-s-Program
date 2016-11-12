@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="utf-8"/>
-    <title>Program</title>
+    <title>Ethan Hyatt's Program</title>
     <script src="https://code.jquery.com/jquery-3.1.1.min.js"
             integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
@@ -18,11 +18,11 @@
     phase = 'explore';
 </script>
 <script>
-    $(document).ready(function () {
-        console.log = function (message) {
-            $('#console').append('<p>' + message + '</p>');
-        };
-    });
+    /*$(document).ready(function () {
+     console.log = function (message) {
+     $('#console').append('<p>' + message + '</p>');
+     };
+     });*/
 </script>
 <div class="map"></div>
 <script>
@@ -49,7 +49,7 @@
 
     map3 = [
         'wwwwwwwwwwwwwwwwwww',
-        'w                 w',
+        'w        b        w',
         '                   ',
         '                   ',
         '                   ',
@@ -81,7 +81,7 @@
         'wwwwwwwwwwwwwwwwwww',
         'wwwwwwwwwwwwwwwwwww',
         'wwwwwwww           ',
-        'wwwwwwww           ',
+        'wwwwwwww      b    ',
         'wwwwwwww           ',
         'wwwwwwww   wwwwwwww',
         'wwwwwwww   wwwwwwww'
@@ -91,7 +91,7 @@
         'wwwwwwwwwwwwwwwwwww',
         'wwwwwwwwwwwwwwwwwww',
         '           wwwwwwww',
-        '           wwwwwwww',
+        '     b     wwwwwwww',
         '           wwwwwwww',
         'wwwwwwww   wwwwwwww',
         'wwwwwwww   wwwwwwww'
@@ -99,11 +99,11 @@
 
     map8 = [
         'wwwwwwww   wwwwwwww',
-        'w                 w',
+        'w      ww ww      w',
         '                   ',
         '                   ',
         '                   ',
-        'w                 w',
+        'w        b        w',
         'wwwwwwwwwwwwwwwwwww'
     ];
 
@@ -132,8 +132,59 @@
     var player_x = 9;
     var player_y = 5;
 
-    mapupdate = function () {
-        $('.map').find('*:not(".player")').remove();
+    var bug_x = 0;
+    var bug_y = 0;
+
+
+    var hunt = function () {
+        if (bug == true) {
+            if (Math.random() >= .50) {
+                if (player_y > bug_y && currentmap[bug_y + 1][bug_x] !== 'w') {
+                    bug_y += 1;
+                }
+                else if (player_y < bug_y && currentmap[bug_y - 1][bug_x] !== 'w') {
+                    bug_y -= 1;
+                }
+                else if (player_y === bug_y) {
+                    if (player_x > bug_x && currentmap[bug_y][bug_x + 1] !== 'w') {
+                        bug_x += 1;
+                    }
+                    else if (player_x < bug_x && currentmap[bug_y][bug_x - 1] !== 'w') {
+                        bug_x -= 1;
+                    }
+                }
+            }
+            else {
+                if (player_x > bug_x && currentmap[bug_y][bug_x + 1] !== 'w') {
+                    bug_x += 1;
+                }
+                else if (player_x < bug_x && currentmap[bug_y][bug_x - 1] !== 'w') {
+                    bug_x -= 1;
+                }
+                else if (player_x === bug_x) {
+                    if (player_y > bug_y  && currentmap[bug_y + 1][bug_x] !== 'w') {
+                        bug_y += 1;
+                    }
+                    else if (player_y < bug_y  && currentmap[bug_y - 1][bug_x] !== 'w') {
+                        bug_y -= 1;
+                    }
+                }
+            }
+            console.log("Bug,", bug_x, bug_y, "Player", player_x, player_y);
+        }
+        if (bug == false) {
+            bug_x = 0;
+            bug_y = 0;
+        }
+        };
+    var bug = false;
+
+    mapupdate = function (initialize) {
+        $('.map').find('*:not(".character")').remove();
+        if (initialize == true) {
+            bug = false;
+            $('#bug').remove();
+        }
         for (y = 0; y < currentmap.length; y++) {
             for (x = 0; x < currentmap[y].length; x++) {
                 if (currentmap[y][x] == 'w') {
@@ -144,14 +195,25 @@
                     $('.map').append('<div class="chest"></div>');
                 } else if (currentmap[y][x] == 'o') {
                     $('.map').append('<div class="empty"></div>');
+                } else if (currentmap[y][x] == 'b') {
+                    $('.map').append('<div class="floor"></div>');
+                    if (initialize == true) {
+                        bug = true;
+                        bug_y = y;
+                        bug_x = x;
+                        $('.map').append('<div id="bug" class="character"></div>');
+                    }
                 }
             }
+        }
+        if (bug == true) {
+            $('#bug').css({top: bug_y * 80, left: bug_x * 80, position: 'absolute'});
         }
     };
 
     phase = 'explore';
 
-    updatescreen = function() {
+    updatescreen = function () {
         if (phase === 'explore') {
             $('#battle').hide();
             $('.map').show();
@@ -167,21 +229,8 @@
     };
 
     $(document).ready(function () {
-        $('.map').append('<div class="player"></div>');
-        for (y = 0; y < currentmap.length; y++) {
-            for (x = 0; x < currentmap[y].length; x++) {
-                if (currentmap[y][x] == 'w') {
-                    $('.map').append('<div class="wall"></div>');
-                } else if (currentmap[y][x] == ' ') {
-                    $('.map').append('<div class="floor"></div>');
-                } else if (currentmap[y][x] == 'c') {
-                    $('.map').append('<div class="chest"></div>');
-                } else if (currentmap[y][x] == 'o') {
-                    $('.map').append('<div class="empty"></div>');
-                }
-
-            }
-        }
+        $('.map').append('<div class="player character"></div>');
+        mapupdate(true);
         $('.player').css({top: player_y * 80, left: player_x * 80, position: 'absolute'});
 
         $(document).keydown(function (event) {
@@ -190,72 +239,93 @@
             //down
             if (event.keyCode == 40 && currentmap[player_y + 1][player_x] !== 'w') {
                 player_y = player_y + 1;
+                hunt();
                 mapupdate();
-                if (player_y == 6) {
-                    my = my + 1;
-                    currentmap = grandmap[my][mx];
-                    mapupdate();
-                    player_y = 0;
-                }
-                if (Math.random() < .10) {
+                if (player_x == bug_x && player_y == bug_y) {
                     phase = 'fighting';
                     updatescreen();
                 }
+                if (player_y == 6) {
+                    my = my + 1;
+                    currentmap = grandmap[my][mx];
+                    mapupdate(true);
+                    player_y = 0;
+                }
+                /*if (Math.random() < .10) {
+                 phase = 'fighting';
+                 updatescreen();
+                 }*/
             }
             //up
             if (event.keyCode == 38 && currentmap[player_y - 1][player_x] !== 'w') {
                 player_y = player_y - 1;
+                hunt();
                 mapupdate();
-                if (player_y == 0) {
-                    my = my - 1;
-                    currentmap = grandmap[my][mx];
-                    mapupdate();
-                    player_y = 6;
-                }
-                if (Math.random() < .10) {
+                if (player_x == bug_x && player_y == bug_y) {
                     phase = 'fighting';
                     updatescreen();
                 }
+                if (player_y == 0) {
+                    my = my - 1;
+                    currentmap = grandmap[my][mx];
+                    mapupdate(true);
+                    player_y = 6;
+                }
+                /*if (Math.random() < .10) {
+                 phase = 'fighting';
+                 updatescreen();
+                 }*/
             }
             //left
             if (event.keyCode == 37 && currentmap[player_y][player_x - 1] !== 'w') {
                 player_x = player_x - 1;
+                hunt();
                 mapupdate();
-                if (player_x == 0) {
-                    mx = mx - 1;
-                    currentmap = grandmap[my][mx];
-                    mapupdate();
-                    player_x = 18;
-                }
-                if (Math.random() < .10) {
+                if (player_x == bug_x && player_y == bug_y) {
                     phase = 'fighting';
                     updatescreen();
                 }
+                if (player_x == 0) {
+                    mx = mx - 1;
+                    currentmap = grandmap[my][mx];
+                    mapupdate(true);
+                    player_x = 18;
+                }
+                /*if (Math.random() < .10) {
+                 phase = 'fighting';
+                 updatescreen();
+                 }*/
             }
             //right
             if (event.keyCode == 39 && currentmap[player_y][player_x + 1] !== 'w') {
                 player_x = player_x + 1;
+                hunt();
                 mapupdate();
-                if (player_x == 18) {
-                    mx = mx + 1;
-                    currentmap = grandmap[my][mx];
-                    mapupdate();
-                    player_x = 0;
-                }
-                if (Math.random() < .10) {
+                if (player_x == bug_x && player_y == bug_y) {
                     phase = 'fighting';
                     updatescreen();
                 }
+                if (player_x == 18) {
+                    mx = mx + 1;
+                    currentmap = grandmap[my][mx];
+                    mapupdate(true);
+                    player_x = 0;
+                }
+                /*if (Math.random() < .10) {
+                 phase = 'fighting';
+                 updatescreen();
+                 }*/
             }
             //chest
-            /*if (currentmap[player_y][player_x] == 'c') {
-             currentmap[player_y][player_x] = 'o';
-             console.log(currentmap[player_y][player_x]);
-             gain = Math.ceil(Math.random() * 3);
-             console.log("You gained " + gain + " potions!");
-             mapupdate()
-             }*/
+            if (currentmap[player_y][player_x] == 'c') {
+                currentmap[player_y][player_x] = 'o';
+                gain = Math.ceil(Math.random() * 3);
+
+                console.log("You gained " + gain + " potions!");
+                mapupdate()
+            }
             $('.player').animate({top: player_y * 80, left: player_x * 80, position: 'absolute'}, {duration: 100});
+            $('#bug').animate({top: bug_y * 80, left: bug_x * 80, position: 'absolute'}, {duration: 100});
         });
     });</script>
 <div id="battle">

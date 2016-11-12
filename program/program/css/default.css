@@ -18,12 +18,18 @@ touch-action: manipulation;
 #enemyhealthbar {
     height: 25px;
     width: 500px;
+    right: 0;
+    top: 0;
+    position: absolute;
 }
 
 #enemyhealth {
     height: 25px;
     width: 500px;
     background-color: red;
+    right: 0;
+    top: 0;
+    position: absolute;
 }
 
 #health {
@@ -87,4 +93,10 @@ touch-action: manipulation;
     width: 500px;
     height: 150px;
     margin: auto;
+}
+#bug {
+    background-color: red;
+    width: 80px;
+    height: 80px;
+    position: absolute;
 }
