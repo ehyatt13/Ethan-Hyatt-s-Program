@@ -18,11 +18,11 @@
     phase = 'explore';
 </script>
 <script>
-    /*$(document).ready(function () {
+    $(document).ready(function () {
      console.log = function (message) {
      $('#console').append('<p>' + message + '</p>');
      };
-     });*/
+     });
 </script>
 <div class="map"></div>
 <script>
@@ -135,48 +135,54 @@
     var bug_x = 0;
     var bug_y = 0;
 
+    var skipturns = 0;
 
     var hunt = function () {
         if (bug == true) {
-            if (Math.random() >= .50) {
-                if (player_y > bug_y && currentmap[bug_y + 1][bug_x] !== 'w') {
-                    bug_y += 1;
+            if (skipturns === 0) {
+                if (Math.random() >= .50) {
+                    if (player_y > bug_y && currentmap[bug_y + 1][bug_x] !== 'w') {
+                        bug_y += 1;
+                    }
+                    else if (player_y < bug_y && currentmap[bug_y - 1][bug_x] !== 'w') {
+                        bug_y -= 1;
+                    }
+                    else if (player_y === bug_y) {
+                        if (player_x > bug_x && currentmap[bug_y][bug_x + 1] !== 'w') {
+                            bug_x += 1;
+                        }
+                        else if (player_x < bug_x && currentmap[bug_y][bug_x - 1] !== 'w') {
+                            bug_x -= 1;
+                        }
+                    }
                 }
-                else if (player_y < bug_y && currentmap[bug_y - 1][bug_x] !== 'w') {
-                    bug_y -= 1;
-                }
-                else if (player_y === bug_y) {
+                else {
                     if (player_x > bug_x && currentmap[bug_y][bug_x + 1] !== 'w') {
                         bug_x += 1;
                     }
                     else if (player_x < bug_x && currentmap[bug_y][bug_x - 1] !== 'w') {
                         bug_x -= 1;
                     }
+                    else if (player_x === bug_x) {
+                        if (player_y > bug_y && currentmap[bug_y + 1][bug_x] !== 'w') {
+                            bug_y += 1;
+                        }
+                        else if (player_y < bug_y && currentmap[bug_y - 1][bug_x] !== 'w') {
+                            bug_y -= 1;
+                        }
+                    }
                 }
             }
             else {
-                if (player_x > bug_x && currentmap[bug_y][bug_x + 1] !== 'w') {
-                    bug_x += 1;
-                }
-                else if (player_x < bug_x && currentmap[bug_y][bug_x - 1] !== 'w') {
-                    bug_x -= 1;
-                }
-                else if (player_x === bug_x) {
-                    if (player_y > bug_y  && currentmap[bug_y + 1][bug_x] !== 'w') {
-                        bug_y += 1;
-                    }
-                    else if (player_y < bug_y  && currentmap[bug_y - 1][bug_x] !== 'w') {
-                        bug_y -= 1;
-                    }
-                }
+                skipturns -= 1
             }
-            console.log("Bug,", bug_x, bug_y, "Player", player_x, player_y);
         }
         if (bug == false) {
             bug_x = 0;
             bug_y = 0;
         }
         };
+
     var bug = false;
 
     mapupdate = function (initialize) {
@@ -184,6 +190,7 @@
         if (initialize == true) {
             bug = false;
             $('#bug').remove();
+            skipturns = 2;
         }
         for (y = 0; y < currentmap.length; y++) {
             for (x = 0; x < currentmap[y].length; x++) {
@@ -217,7 +224,8 @@
         if (phase === 'explore') {
             $('#battle').hide();
             $('.map').show();
-            $('#console').empty();
+            $('.alert alert-success').empty();
+            $('.alert alert-danger').empty();
         }
         ;
 
@@ -330,10 +338,10 @@
     });</script>
 <div id="battle">
     <div id="healthbar">
-        <div id="health">HP</div>
+        <div id="health"></div>
     </div>
     <div id="enemyhealthbar">
-        <div id="enemyhealth">Enemy HP</div>
+        <div id="enemyhealth"></div>
     </div>
     <script>
         $(document).ready(function () {
@@ -352,7 +360,6 @@
         <button class="command" onclick="player1.potion(5)">Inventory</button>
         <button class="command" onclick="player1.run()">Escape</button>
         <div id="console"></div>
-        <div class="alert alert-success" role="alert"></div>
     </div>
 </div>
 <script>

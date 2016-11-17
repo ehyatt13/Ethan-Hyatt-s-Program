@@ -42,8 +42,8 @@ function fighter() {
                 var damage = Math.floor(this.strength / currentenemy.defense);
                 console.log("You did " + damage + " damage!");
                 currentenemy.hp -= damage;
-                updateenemyhealth(currentenemy.hp / currentenemy.maxHp * 500)
-                var enemyCommand = Math.random()
+                updateenemyhealth(currentenemy.hp / currentenemy.maxHp * 500);
+                var enemyCommand = Math.random();
                 if (enemyCommand <= .5) {
                     currentenemy.attack();
                 }
@@ -57,7 +57,7 @@ function fighter() {
                 ;
             }
             else {
-                var enemyCommand = Math.random()
+                var enemyCommand = Math.random();
                 if (enemyCommand <= .5) {
                     currentenemy.attack();
                 }
@@ -78,7 +78,11 @@ function fighter() {
             if (currentenemy.hp <= 0) {
                 console.log("You won the battle! You gained " + currentenemy.exp + " EXP!");
                 this.exp += currentenemy.exp;
-                this.levelup()
+                this.levelup();
+                bug = false;
+                $('#bug').remove();
+                currentenemy.hp = currentenemy.maxHp;
+                updateenemyhealth(currentenemy.hp / currentenemy.maxHp * 500);
                 phase = 'explore';
                 updatescreen();
             }
@@ -95,8 +99,8 @@ function fighter() {
                 var damage = Math.floor(this.magic / currentenemy.magicdefense);
                 console.log("You did " + damage + " damage!");
                 currentenemy.hp -= damage;
-                updateenemyhealth(currentenemy.hp / currentenemy.maxHp * 500)
-                var enemyCommand = Math.random()
+                updateenemyhealth(currentenemy.hp / currentenemy.maxHp * 500);
+                var enemyCommand = Math.random();
                 if (enemyCommand <= .5) {
                     currentenemy.attack();
                 }
@@ -132,7 +136,11 @@ function fighter() {
             if (currentenemy.hp <= 0) {
                 console.log("You won the battle! You gained " + currentenemy.exp + " EXP!");
                 this.exp += currentenemy.exp;
-                this.levelup()
+                this.levelup();
+                bug = false;
+                $('#bug').remove();
+                currentenemy.hp = currentenemy.maxHp;
+                updateenemyhealth(currentenemy.hp / currentenemy.maxHp * 500);
                 phase = 'explore';
                 updatescreen();
             }
@@ -146,37 +154,40 @@ function fighter() {
     this.inventory = function () {
         inBattle: new Array(player1.potion(5))
         keyItems: new Array()
-    }
+    };
     this.run = function () {
         if (Math.random() > .45) {
-            console.log("You managed to escape!")
+            console.log("You managed to escape!");
             phase = 'explore';
             updatescreen();
+            skipturns = 2;
         }
         else {
-            console.log("You can't escape!")
-            var enemyCommand = Math.random()
+            console.log("You can't escape!");
+            var enemyCommand = Math.random();
             if (enemyCommand <= .5) {
                 currentenemy.attack();
             }
             else {
                 currentenemy.spell();
             }
-            ;
         }
     };
-};
+}
 
 updatescreen = function() {
     if (phase === 'explore') {
         $('#battle').hide();
         $('.map').show();
         $('#console').empty();
+        updatehealth(player1.hp / player1.maxHp * 500);
     }
     ;
 
     if (phase === 'fighting') {
         $('.map').hide();
+        updatehealth(player1.hp / player1.maxHp * 500);
+        updateenemyhealth(currentenemy.hp / currentenemy.maxHp * 500);
         $('#battle').show();
     }
     ;
@@ -188,21 +199,21 @@ function melee() {
     this.defense = 3;
     this.magicdefense = 1;
 }
-melee.prototype = new fighter()
+melee.prototype = new fighter();
 function mage() {
     this.strength = 2;
     this.magic = 6;
     this.defense = 1;
     this.magicdefense = 3;
 }
-mage.prototype = new fighter()
+mage.prototype = new fighter();
 function tank() {
     this.strength = 2;
     this.magic = 2;
     this.defense = 4;
     this.magicdefense = 4;
 }
-tank.prototype = new fighter()
+tank.prototype = new fighter();
 function enemy(hp, maxHp, strength, magic, defense, magicdefense, speed, special, exp, level) {
     this.hp = hp;
     this.maxHp = maxHp
@@ -226,9 +237,9 @@ function enemy(hp, maxHp, strength, magic, defense, magicdefense, speed, special
         player1.hp -= hit;
         updatehealth(player1.hp / player1.maxHp * 500)
     }
-};
+}
 
-var bug = new enemy(10, 10, 2, 3, 2, 2, 1, 5, 5, 1);
+var bug = new enemy(10, 10, 2, 2, 2, 2, 1, 5, 5, 1);
 
 //var rogue = new enemy(20, 20, 3, 2, 2, 1, 10, 5, 10, 3);
 
@@ -263,10 +274,10 @@ switch (choice) {
         break;
 
     default:
-        console.log("The undecisive will fail against even the weakest of enemies.")
+        console.log("The undecisive will fail against even the weakest of enemies...")
 }
 
-var currentenemy = bug
+var currentenemy = bug;
 
 /*if (bug.hp <= 0) {
  var currentenemy = rogue;
@@ -276,20 +287,24 @@ var currentenemy = bug
 function updatehealth(health) {
     $('#health').animate({
         width: health
-    }, 'slow')
-};
+    }, 'slow');
+    $('#health').html("HP: " + player1.hp + "/" + player1.maxHp);
+    if (player1.hp / player1.maxHp <= 0.5) {
+        $('#health').backgroundColor = 'yellow';
+    }
+    else if (player1.hp / player1.maxHp <= 0.3) {
+        $('#health').backgroundColor = 'red';
+    }
+}
+
 function updateenemyhealth(enemyhealth) {
     $('#enemyhealth').animate({
         width: enemyhealth
-    }, 'slow')
+    }, 'slow');
+    $('#enemyhealth').html("Enemy HP: " + currentenemy.hp + "/" + currentenemy.maxHp)
 };
-if (player1.hp / player1.maxHp <= 0.5) {
-    document.getElementById(health).background - color === 'yellow';
-}
-else if (player1.hp / player1.maxHp <= 0.3) {
-    document.getElementById(health).background - color === 'red';
-}
-;
+
+
 
 /*fighter.inventory.inBattle[0] = function (amount) {
  if (amount > 0) {
