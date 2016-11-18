@@ -1,5 +1,104 @@
-﻿body {
-  /* Uncomment this to enable scrolling and zooming
-  touch-action: manipulation;
-  */
+﻿/* Uncomment this to enable scrolling and zooming
+touch-action: manipulation;
+*/
+.buttons {
+    text-align: center;
+}
+
+.command {
+    height: 50px;
+    width: 200px;
+}
+
+#healthbar {
+    height: 25px;
+    width: 500px;
+}
+
+#enemyhealthbar {
+    height: 25px;
+    width: 500px;
+    right: 0;
+    top: 0;
+    position: absolute;
+}
+
+#enemyhealth {
+    height: 25px;
+    width: 500px;
+    background-color: red;
+    right: 0;
+    top: 0;
+    position: absolute;
+    overflow: hidden;
+}
+
+#health {
+    height: 25px;
+    width: 500px;
+    background-color: greenyellow;
+    overflow: hidden;
+}
+
+.map {
+    width: 1520px;
+    height: 560px;
+    background-color: gray;
+    position: relative;
+
+}
+
+.player {
+    background-color: blue;
+    width: 80px;
+    height: 80px;
+    position: absolute;
+}
+
+.wall {
+    background: url(https://s-media-cache-ak0.pinimg.com/736x/ca/18/50/ca1850db3b924f430b571d158b91cc2e.jpg);
+    background-size: 80px 80px;
+    background-repeat: no-repeat;
+    width: 80px;
+    height: 80px;
+    float: left;
+}
+
+.floor {
+    background: url(https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcSpDD2xJ4IJ2Qtb-Vh3HM7TXzPq6JvGRDklyCKgueNYOA-xMfd2eA);
+    background-size: 80px 80px;
+    background-repeat: no-repeat;
+    width: 80px;
+    height: 80px;
+    float: left;
+}
+
+.chest {
+    background: url(https://images-na.ssl-images-amazon.com/images/I/61nAFFJOhaL.png);
+    background-size: 80px 80px;
+    background-repeat: no-repeat;
+    width: 80px;
+    height: 80px;
+    float: left;
+}
+
+.empty {
+    background: url(http://www.clker.com/cliparts/t/m/S/Q/Z/t/treasure-chest-hi.png);
+    background-size: 80px 80px;
+    background-repeat: no-repeat;
+    width: 80px;
+    height: 80px;
+    float: left;
+}
+
+.radio {
+    width: 500px;
+    height: 150px;
+    margin: auto;
+}
+#bug {
+    background-color: red;
+    width: 80px;
+    height: 80px;
+    position: absolute;
 }
