@@ -328,6 +328,8 @@
             if (currentmap[player_y][player_x] == 'c') {
                 currentmap[player_y][player_x] = 'o';
                 gain = Math.ceil(Math.random() * 3);
+                held += gain;
+                $('#potion').html("Potion (" + held + ")");
 
                 console.log("You gained " + gain + " potions!");
                 mapupdate()
@@ -357,7 +359,7 @@
     <div class="buttons">
         <button class="command" onclick="player1.attack()">Attack</button>
         <button class="command" onclick="player1.spell()">Magic</button>
-        <button class="command" onclick="player1.potion(5)">Inventory</button>
+        <button class="command" id="potion" onclick="player1.potion()">Potion</button>
         <button class="command" onclick="player1.run()">Escape</button>
         <div id="console"></div>
     </div>

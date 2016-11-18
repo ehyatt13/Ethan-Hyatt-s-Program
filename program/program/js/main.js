@@ -173,7 +173,42 @@ function fighter() {
             }
         }
     };
+    this.potion = function () {
+        if (player1.hp === player1.maxHp) {
+            console.log("You already have full health. You shouldn't waste it.")
+        }
+        else {
+            if (held > 0) {
+                held -= 1;
+                heal = player1.maxHp - player1.hp;
+                if (heal > 10) {
+                    console.log("You gained 10 HP!");
+                }
+                else {
+                    console.log("You gained " + heal + " HP !")
+                }
+                player1.hp += 10;
+                if (player1.hp > player1.maxHp) {
+                    player1.hp = player1.maxHp;
+                }
+                $('#potion').html("Potion (" + held + ")");
+                updatehealth(player1.hp / player1.maxHp * 500);
+                var enemyCommand = Math.random();
+                if (enemyCommand <= .5) {
+                    currentenemy.attack();
+                }
+                else {
+                    currentenemy.spell();
+                }
+            }
+            else {
+                console.log("You are out of potions!")
+            }
+        }
+    }
 }
+
+held = 5;
 
 updatescreen = function() {
     if (phase === 'explore') {
