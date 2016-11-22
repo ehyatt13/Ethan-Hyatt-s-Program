@@ -331,7 +331,12 @@
                 held += gain;
                 $('#potion').html("Potion (" + held + ")");
 
-                console.log("You gained " + gain + " potions!");
+                if (gain == 1) {
+                    console.log("You gained " + gain + " potion!");
+                }
+                else {
+                    console.log("You gained " + gain + " potions!");
+                }
                 mapupdate()
             }
             $('.player').animate({top: player_y * 80, left: player_x * 80, position: 'absolute'}, {duration: 100});
