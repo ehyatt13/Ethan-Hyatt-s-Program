@@ -77,12 +77,7 @@ function fighter() {
                 console.log("You won the battle! You gained " + currentenemy.exp + " EXP!");
                 this.exp += currentenemy.exp;
                 this.levelup();
-                bug = false;
-                $('#bug').remove();
-                currentenemy.hp = currentenemy.maxHp;
-                updateenemyhealth(currentenemy.hp / currentenemy.maxHp * 500);
-                phase = 'explore';
-                updatescreen();
+                $('#console').append('<button class="confirm" onclick="confirm()">Confirm</button>')
             }
         }
         else {
@@ -129,12 +124,7 @@ function fighter() {
                 console.log("You won the battle! You gained " + currentenemy.exp + " EXP!");
                 this.exp += currentenemy.exp;
                 this.levelup();
-                bug = false;
-                $('#bug').remove();
-                currentenemy.hp = currentenemy.maxHp;
-                updateenemyhealth(currentenemy.hp / currentenemy.maxHp * 500);
-                phase = 'explore';
-                updatescreen();
+                $('#console').append('<button class="confirm" onclick="confirm()">Confirm</button>')
             }
         }
         else {
@@ -208,7 +198,7 @@ function fighter() {
 
 held = 5;
 
-updatescreen = function() {
+updatescreen = function () {
     if (phase === 'explore') {
         $('#battle').hide();
         $('.map').show();
@@ -222,6 +212,14 @@ updatescreen = function() {
         updateenemyhealth(currentenemy.hp / currentenemy.maxHp * 500);
         $('#battle').show();
     }
+};
+confirm = function () {
+    bug = false;
+    $('#bug').remove();
+    currentenemy.hp = currentenemy.maxHp;
+    updateenemyhealth(currentenemy.hp / currentenemy.maxHp * 500);
+    phase = 'explore';
+    updatescreen();
 };
 
 function melee() {
@@ -336,7 +334,6 @@ function updateenemyhealth(enemyhealth) {
     }, 'slow');
     $('#enemyhealth').html("Enemy HP: " + currentenemy.hp + "/" + currentenemy.maxHp)
 };
-
 
 
 /*fighter.inventory.inBattle[0] = function (amount) {

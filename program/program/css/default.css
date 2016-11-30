@@ -10,6 +10,11 @@ touch-action: manipulation;
     width: 200px;
 }
 
+.confirm {
+    height: 50px;
+    width: 200px;
+}
+
 #healthbar {
     height: 25px;
     width: 500px;
@@ -96,6 +101,7 @@ touch-action: manipulation;
     height: 150px;
     margin: auto;
 }
+
 #bug {
     background-color: red;
     width: 80px;

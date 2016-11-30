@@ -31,7 +31,7 @@
         'wwwwwwww   wwwwwwww',
         'w                 w',
         'w                 w',
-        'w        c        w',
+        'w                 w',
         'w                 w',
         'w                 w',
         'wwwwwwwwwwwwwwwwwww'
@@ -107,6 +107,16 @@
         'wwwwwwwwwwwwwwwwwww'
     ];
 
+    map9 = [
+        'wwwwwwwwwwwwwwwwwww',
+        'w                 w',
+        'w wwww ww  w www  w',
+        'w ww   w w w w  w w',
+        'w wwww w  ww www  w',
+        'w                 w',
+        'wwwwwwww   wwwwwwww'
+    ]
+
     blank = [
         'wwwwwwwwwwwwwwwwwww',
         'wwwwwwwwwwwwwwwwwww',
@@ -118,13 +128,14 @@
     ];
 
     grandmap = [
+        [blank, map9, blank],
         [map6, map8, map7],
         [map4, map3, map5],
         [blank, map2, blank],
         [blank, map, blank]
     ];
 
-    var my = 3;
+    var my = 4;
     var mx = 1;
 
     currentmap = grandmap[my][mx];
