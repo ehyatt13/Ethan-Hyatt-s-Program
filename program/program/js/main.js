@@ -1,5 +1,7 @@
 ﻿phase = 'explore';
 
+var life = true;
+
 function fighter() {
     this.speed = 3;
     this.exp = 0;
@@ -28,16 +30,15 @@ function fighter() {
         ;
     };
     this.isAlive = function () {
-        if (this.hp > 0) {
-            this.isAlive = true;
+        if (this.hp <= 0) {
+            life = false;
         }
         else {
-            this.isAlive = false;
+            life = true;
         }
-        ;
     };
     this.attack = function () {
-        if (player1.isAlive = true) {
+        if (life === true) {
             if (player1.speed >= currentenemy.speed) {
                 var damage = Math.floor(this.strength / currentenemy.defense);
                 console.log("You did " + damage + " damage!");
@@ -50,11 +51,9 @@ function fighter() {
                 else {
                     currentenemy.spell();
                 }
-                ;
-                if (player1.isAlive = false) {
+                if (life === false) {
                     console.log("You have been defeated!");
                 }
-                ;
             }
             else {
                 var enemyCommand = Math.random();
@@ -64,8 +63,7 @@ function fighter() {
                 else {
                     currentenemy.spell();
                 }
-                ;
-                if (player1.isAlive = false) {
+                if (life === false) {
                     console.log("You have been defeated!");
                 }
                 else {
@@ -79,22 +77,15 @@ function fighter() {
                 console.log("You won the battle! You gained " + currentenemy.exp + " EXP!");
                 this.exp += currentenemy.exp;
                 this.levelup();
-                bug = false;
-                $('#bug').remove();
-                currentenemy.hp = currentenemy.maxHp;
-                updateenemyhealth(currentenemy.hp / currentenemy.maxHp * 500);
-                phase = 'explore';
-                updatescreen();
+                $('#console').append('<button class="confirm" onclick="confirm()">Confirm</button>')
             }
-            ;
         }
         else {
             console.log("You cannot attack beyond the grave...");
         }
-        ;
     };
     this.spell = function () {
-        if (player1.isAlive = true) {
+        if (life === true) {
             if (player1.speed >= currentenemy.speed) {
                 var damage = Math.floor(this.magic / currentenemy.magicdefense);
                 console.log("You did " + damage + " damage!");
@@ -107,22 +98,19 @@ function fighter() {
                 else {
                     currentenemy.spell();
                 }
-                ;
-                if (player1.isAlive = false) {
+                if (life === false) {
                     console.log("You have been defeated!");
                 }
-                ;
             }
             else {
-                var enemyCommand = Math.random()
+                var enemyCommand = Math.random();
                 if (enemyCommand <= .5) {
                     currentenemy.attack();
                 }
                 else {
                     currentenemy.spell();
                 }
-                ;
-                if (player1.isAlive = false) {
+                if (life === false) {
                     console.log("You have been defeated!");
                 }
                 else {
@@ -131,68 +119,68 @@ function fighter() {
                     currentenemy.hp -= damage;
                     updateenemyhealth(currentenemy.hp / currentenemy.maxHp * 500)
                 }
-                ;
             }
             if (currentenemy.hp <= 0) {
                 console.log("You won the battle! You gained " + currentenemy.exp + " EXP!");
                 this.exp += currentenemy.exp;
                 this.levelup();
-                bug = false;
-                $('#bug').remove();
-                currentenemy.hp = currentenemy.maxHp;
-                updateenemyhealth(currentenemy.hp / currentenemy.maxHp * 500);
-                phase = 'explore';
-                updatescreen();
+                $('#console').append('<button class="confirm" onclick="confirm()">Confirm</button>')
             }
-            ;
         }
         else {
             console.log("You cannot attack beyond the grave...");
         }
-        ;
     };
     this.inventory = function () {
         inBattle: new Array(player1.potion(5))
         keyItems: new Array()
     };
     this.run = function () {
-        if (Math.random() > .45) {
-            console.log("You managed to escape!");
-            phase = 'explore';
-            updatescreen();
-            skipturns = 2;
+        if (life === false) {
+            console.log("How will you run if you are dead?");
         }
         else {
-            console.log("You can't escape!");
-            var enemyCommand = Math.random();
-            if (enemyCommand <= .5) {
-                currentenemy.attack();
+            if (Math.random() > .45) {
+                console.log("You managed to escape!");
+                phase = 'explore';
+                updatescreen();
+                skipturns = 2;
             }
             else {
-                currentenemy.spell();
+                console.log("You can't escape!");
+                var enemyCommand = Math.random();
+                if (enemyCommand <= .5) {
+                    currentenemy.attack();
+                }
+                else {
+                    currentenemy.spell();
+                }
             }
         }
     };
     this.potion = function () {
-        if (player1.hp === player1.maxHp) {
+        if (this.hp === this.maxHp) {
             console.log("You already have full health. You shouldn't waste it.")
+        }
+        else if (life === false) {
+            console.log("A little late for one of these, wouldn't you so say so?");
         }
         else {
             if (held > 0) {
                 held -= 1;
-                heal = player1.maxHp - player1.hp;
+                heal = this.maxHp - this.hp;
                 if (heal > 10) {
                     console.log("You gained 10 HP!");
                 }
                 else {
                     console.log("You gained " + heal + " HP !")
                 }
-                player1.hp += 10;
-                if (player1.hp > player1.maxHp) {
-                    player1.hp = player1.maxHp;
+                this.hp += 10;
+                if (this.hp > this.maxHp) {
+                    this.hp = this.maxHp;
                 }
                 $('#potion').html("Potion (" + held + ")");
-                updatehealth(player1.hp / player1.maxHp * 500);
+                updatehealth(this.hp / this.maxHp * 500);
                 var enemyCommand = Math.random();
                 if (enemyCommand <= .5) {
                     currentenemy.attack();
@@ -210,14 +198,13 @@ function fighter() {
 
 held = 5;
 
-updatescreen = function() {
+updatescreen = function () {
     if (phase === 'explore') {
         $('#battle').hide();
         $('.map').show();
         $('#console').empty();
         updatehealth(player1.hp / player1.maxHp * 500);
     }
-    ;
 
     if (phase === 'fighting') {
         $('.map').hide();
@@ -225,7 +212,14 @@ updatescreen = function() {
         updateenemyhealth(currentenemy.hp / currentenemy.maxHp * 500);
         $('#battle').show();
     }
-    ;
+};
+confirm = function () {
+    bug = false;
+    $('#bug').remove();
+    currentenemy.hp = currentenemy.maxHp;
+    updateenemyhealth(currentenemy.hp / currentenemy.maxHp * 500);
+    phase = 'explore';
+    updatescreen();
 };
 
 function melee() {
@@ -265,18 +259,20 @@ function enemy(hp, maxHp, strength, magic, defense, magicdefense, speed, special
         console.log("You took " + hit + " damage!");
         player1.hp -= hit;
         updatehealth(player1.hp / player1.maxHp * 500)
+        player1.isAlive();
     };
     this.spell = function () {
         var hit = Math.floor(this.magic / player1.magicdefense);
         console.log("You took " + hit + " damage!");
         player1.hp -= hit;
-        updatehealth(player1.hp / player1.maxHp * 500)
+        updatehealth(player1.hp / player1.maxHp * 500);
+        player1.isAlive();
     }
 }
 
 var bug = new enemy(10, 10, 2, 2, 2, 2, 1, 5, 5, 1);
 
-//var rogue = new enemy(20, 20, 3, 2, 2, 1, 10, 5, 10, 3);
+var rogue = new enemy(20, 20, 3, 2, 2, 1, 10, 5, 10, 3);
 
 var getUrlParameter = function getUrlParameter(sParam) {
     var sPageURL = decodeURIComponent(window.location.search.substring(1)),
@@ -312,7 +308,7 @@ switch (choice) {
         console.log("The undecisive will fail against even the weakest of enemies...")
 }
 
-var currentenemy = bug;
+currentenemy = bug;
 
 /*if (bug.hp <= 0) {
  var currentenemy = rogue;
@@ -338,7 +334,6 @@ function updateenemyhealth(enemyhealth) {
     }, 'slow');
     $('#enemyhealth').html("Enemy HP: " + currentenemy.hp + "/" + currentenemy.maxHp)
 };
-
 
 
 /*fighter.inventory.inBattle[0] = function (amount) {
